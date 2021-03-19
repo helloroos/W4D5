@@ -18,3 +18,13 @@ arr = [0, 1, 5, 7]
 p bad_two_sum?(arr, 6)
 p bad_two_sum?(arr, 10)
 
+def okay_two_sum?(arr, target_sum)
+    return nil if arr.empty?
+
+    mid_idx = arr.length / 2
+    left = arr.take(mid_idx)
+    right = arr.drop(mid_idx + 1)
+
+end
+
+def helper()
