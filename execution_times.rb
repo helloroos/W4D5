@@ -110,7 +110,7 @@ def largest_contiguous_subsum_two(arr)
     end
     
     j = -1
-    while j 
+    while j > -arr.length
         list << arr[0..j]
         j -= 1
     end
