@@ -34,10 +34,14 @@ second_anagram?(string1, string2)
 second_anagram?(string1, string3)
 
 def third_anagram?(str1, str2)
-    letters_1 = str1.split("")
-    letters_2 = str2.split("")
-    letters_1.sort == letters_2.sort
+    letters_1 = str1.split("")          # O(1)
+    letters_2 = str2.split("")          # O(1)
+    letters_1.sort == letters_2.sort    # O(n log(n)) + O(n log(n))
 end
+
+# (n log(n)) + (n log(n))
+# 2(n log(n))
+# (n log(n))
 
 p third_anagram?(string1, string2)
 p third_anagram?(string1, string3)
