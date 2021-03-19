@@ -1,3 +1,5 @@
+require "byebug"
+
 def bad_two_sum?(arr, target_sum)
     arr.each_with_index do |ele1, i|                        # O(n)
         arr.each_with_index do |ele2, j|                    # O(n)
@@ -13,18 +15,25 @@ end
 # n * n
 # n^2
 
-arr = [0, 1, 5, 7]
+arr = [0, 5, 1, 7]
+# sorted = [1, 2, 3, 4, 5, 6, 7, 8, 16] # 17 
 
-p bad_two_sum?(arr, 6)
-p bad_two_sum?(arr, 10)
+bad_two_sum?(arr, 6)
+bad_two_sum?(arr, 10)
 
 def okay_two_sum?(arr, target_sum)
-    return nil if arr.empty?
-
-    mid_idx = arr.length / 2
-    left = arr.take(mid_idx)
-    right = arr.drop(mid_idx + 1)
-
+    # debugger
+    arr.sort!
+    until arr.last < target_sum
+        arr.pop
+    end
+    while arr.length >= 2
+        val = arr.pop 
+        new_target = target_sum - val 
+        return true if arr.include?(new_target) 
+    end
+    false
 end
-
-def helper()
+# debugger
+p okay_two_sum?(arr, 6) # => should be true
+p okay_two_sum?(arr, 10) # => should be false
