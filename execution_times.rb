@@ -22,7 +22,8 @@ def my_min(array)
     smallest                                        # O(1)
 end
 # 1 + n * (n * 2) + 1
-# 1 + 2n^2
+# 1 + 1 + n * n * 2
+# 2 * n^2
 # n^2 
 
 list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
@@ -32,7 +33,19 @@ p my_min(list)  # =>  -5
 # Now rewrite the function to iterate through the list just once while keeping track of
 # the minimum. What is the time complexity?
 
+def my_min_two(array)
+    smallest = array.first 
 
+    array.each do |ele|
+        if ele < smallest 
+            smallest = ele
+        end
+    end
+
+    smallest 
+end
+
+p my_min_two(list)
 
 # Largest Contiguous Sub-sum
 # You have an array of integers and you want to find the largest contiguous (together in
