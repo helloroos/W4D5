@@ -43,5 +43,15 @@ end
 # 2(n log(n))
 # (n log(n))
 
-p third_anagram?(string1, string2)
-p third_anagram?(string1, string3)
+third_anagram?(string1, string2)
+third_anagram?(string1, string3)
+
+def fourth_anagram?(str1, str2)
+    hash = Hash.new(0)
+    str1.each_char { |char| hash[char] += 1 }
+    str2.each_char { |char| hash[char] -= 1 }
+    hash.all? { |k, v| v.zero? }
+end
+
+p fourth_anagram?(string1, string2)
+p fourth_anagram?(string1, string3)
