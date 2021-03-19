@@ -83,15 +83,15 @@ def largest_contiguous_subsum(arr)
             list << arr[i1...i2] # O(1)
         end
     end
-    list.map(&:sum).max # O(n) * O(n)
+    list.map(&:sum).max # O(n) + O(n)
 end
 
 list = [5, 3, -7]
 p largest_contiguous_subsum(list) # => 8
-# 1 + n * (n * 1) + n * n
-# 1 + n * n + n * n
-# n * n + n * n
-# n^2 + n^2
+# 1 + n * (n * 1) + n + n
+# 1 + n * n + n + n
+# n * n + n + n
+# n^2 + 2n
 # n^2 
 
 # Phase II
@@ -100,3 +100,22 @@ p largest_contiguous_subsum(list) # => 8
 # consider using two variables. One variable should track the largest sum so far 
 # and another to track the current sum. We'll leave the rest to you.
 
+def largest_contiguous_subsum_two(arr)
+    list = []
+    i = 0
+
+    while i < arr.length 
+        list << arr[i..-1]
+        i += 1
+    end
+    
+    j = -1
+    while j 
+        list << arr[0..j]
+        j -= 1
+    end
+    p list 
+    list.map(&:sum).max 
+end
+
+p largest_contiguous_subsum_two(list)
