@@ -1,20 +1,15 @@
 string = "elvis"
 
-def first_anagram?(str)
-    anagrams = []
-    str.each_char.with_index do |char, i|
-        # temp = str[0...i] + str[i + 1..-1]
-        (0...str.length - 1).each do |j|
-            first = str[0...j + 1]
-            last = str[j + 1..-1]
-            anagrams << first + char + last
-        end
-        p temp
-    end
+def first_anagram?(str1, str2)
+    letters = str1.split("")                # O(1)
+
+    anagrams = letters.permutation.to_a     # O(n!)
+    joined = anagrams.map(&:join)           # O(n)
+    joined.include?(str2)                   # O(1)
 end
+# 1 + n! + n + 1
+# n!
 
-first_anagram?(string)
+p first_anagram?(string, "sally")
+p first_anagram?(string, "vlies")
 
-# Iterate through the str
-# Range from 0 to str.legnth - 1
-# Plug each char into the idx of the range
