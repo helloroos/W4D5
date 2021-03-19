@@ -22,8 +22,8 @@ def my_min(array)
     smallest                                        # O(1)
 end
 # 1 + n * (n * 2) + 1
-# 1 + 1 + n * n * 2
-# 2 * n^2
+# 1 + 1 + n * (n * 2)
+# 2 + n^2
 # n^2 
 
 list = [ 0, 3, 5, 4, -5, 10, 1, 90 ]
@@ -101,21 +101,27 @@ p largest_contiguous_subsum(list) # => 8
 # and another to track the current sum. We'll leave the rest to you.
 
 def largest_contiguous_subsum_two(arr)
-    list = []
-    i = 0
+    list = [] # O(1)
+    i = 0 # O(1)
 
-    while i < arr.length 
-        list << arr[i..-1]
-        i += 1
+    while i < arr.length # O(n)
+        list << arr[i..-1] # O(1)
+        list << [arr[i]] # O(1)
+        i += 1 # O(1)
     end
     
-    j = -1
-    while j > -arr.length
-        list << arr[0..j]
-        j -= 1
+    j = -1 # O(1)
+    while j > -arr.length # O(n)
+        list << arr[0..j] # O(1)
+        j -= 1 # O(1)
     end
-    p list 
-    list.map(&:sum).max 
+
+    list.map(&:sum).max  # O(n) + O(n)
 end
 
 p largest_contiguous_subsum_two(list)
+
+# (n*3) + (n*2) + n + n
+# 3n + 2n + 2n
+# 7n
+# O(n)
