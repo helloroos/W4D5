@@ -34,15 +34,15 @@ p my_min(list)  # =>  -5
 # the minimum. What is the time complexity?
 
 def my_min_two(array)
-    smallest = array.first 
+    smallest = array.first # O(1)
 
-    array.each do |ele|
-        if ele < smallest 
-            smallest = ele
+    array.each do |ele| # O(n)
+        if ele < smallest # O(1)
+            smallest = ele # O(1)
         end
     end
 
-    smallest 
+    smallest # O(1)
 end
 
 p my_min_two(list)
@@ -52,9 +52,6 @@ p my_min_two(list)
 # sequence) sub-sum. Find the sums of all contiguous sub-arrays and return the max.
 
 # Example:
-
-#     list = [5, 3, -7]
-#     largest_contiguous_subsum(list) # => 8
 
 #     # possible sub-sums
 #     [5]           # => 5
@@ -71,6 +68,7 @@ p my_min_two(list)
 
 #     list = [-5, -1, -3]
 #     largest_contiguous_subsum(list) # => -1 (from [-1])
+
 # Phase I
 # Write a function that iterates through the array and finds all sub-arrays using nested
 # loops. First make an array to hold all sub-arrays. Then find the sums of each sub-array
@@ -78,7 +76,27 @@ p my_min_two(list)
 
 # Discuss the time complexity of this solution.
 
+def largest_contiguous_subsum(arr)
+    list = [] # O(1)
+    (0...arr.length).each do |i1|  # O(n)
+        (i1 + 1..arr.length).each do |i2| # O(n)
+            list << arr[i1...i2] # O(1)
+        end
+    end
+    list.map(&:sum).max # O(n) * O(n)
+end
+
+list = [5, 3, -7]
+p largest_contiguous_subsum(list) # => 8
+# 1 + n * (n * 1) + n * n
+# 1 + n * n + n * n
+# n * n + n * n
+# n^2 + n^2
+# n^2 
+
 # Phase II
 # Let's make a better version. Write a new function using O(n) time with O(1) memory.
 # Keep a running tally of the largest sum. To accomplish this efficient space complexity,
-# consider using two variables. One variable should track the largest sum so far and another to track the current sum. We'll leave the rest to you.
+# consider using two variables. One variable should track the largest sum so far 
+# and another to track the current sum. We'll leave the rest to you.
+
